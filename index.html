@@ -150,6 +150,59 @@
     line-height: 1.3;
   }
 
+  /* PECADOS — 4 cosas que busco */
+  .pecados {
+    display: grid;
+    gap: 20px;
+    margin: 32px 0 40px;
+  }
+  .pecado {
+    background: var(--gris-claro);
+    border-left: 4px solid var(--naranja);
+    padding: 24px 28px;
+    border-radius: 0 8px 8px 0;
+  }
+  .pecado .num {
+    display: inline-block;
+    background: var(--naranja);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-weight: 800;
+    font-size: 15px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  .pecado h4 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--negro);
+    display: flex;
+    align-items: center;
+  }
+  .pecado p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--negro);
+    margin: 0;
+  }
+  .pecado .detector {
+    margin-top: 12px;
+    font-size: 15px;
+    color: var(--gris);
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .pecado { padding: 20px 22px; }
+    .pecado h4 { font-size: 17px; }
+    .pecado p { font-size: 16px; }
+    .pecado .detector { font-size: 14px; }
+  }
+
   /* FAQ */
   .faq {
     padding: 80px 0;
@@ -360,15 +413,36 @@ src="https://www.facebook.com/tr?id=1821994165872929&ev=PageView&noscript=1"
       <a href="https://wa.me/34694918102?text=Hola%20Sergio,%20quiero%20que%20mires%20mi%20factura%20de%20la%20luz" class="btn btn-wa" onclick="fbq('track', 'Contact'); fbq('track', 'Lead');">Mándame tu factura por WhatsApp →</a>
     </div>
 
-    <p>Lo que sí o sí pasa cuando me la mandas:</p>
+    <h3>Las 4 cosas que <span class="accent">busco</span> en tu factura</h3>
 
-    <ul>
-      <li>Te respondo en menos de 24 horas.</li>
-      <li>Te digo lo que veo, sin venderte nada.</li>
-      <li>No insisto si decides no cambiar.</li>
-      <li>Si cambiamos, en 15 días estás pagando lo justo.</li>
-      <li>Cada mes reviso si sigues en la mejor opción. Sin que me lo pidas.</li>
-    </ul>
+    <p>No te audito "en general". Audito buscando 4 cosas concretas. Si encuentro al menos 2 de las 4, tu factura tiene margen real.</p>
+
+    <div class="pecados">
+      <div class="pecado">
+        <h4><span class="num">1</span>Cargos extras que no contrataste</h4>
+        <p>Líneas tipo "Protección Eléctrica Hogar", "Pack", "Smart Solar" o "Mantenimiento" en la sección "Servicios y otros conceptos". Suelen ser de 5 a 12 € al mes. Si llevas 2 años, son 100-300 € tirados sin saberlo.</p>
+        <p class="detector">Cómo se ve: línea pequeña con IVA al 21 % (en lugar del 10 % reducido de la luz).</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">2</span>Precio del kWh muy por encima del mercado</h4>
+        <p>Si en tu factura ves "Energía consumida X kWh × 0,15-0,22 €/kWh", estás pagando entre un 30 % y un 100 % más que el mercado actual. Las tarifas competitivas hoy están entre 0,10 y 0,12 €/kWh para tu perfil.</p>
+        <p class="detector">Cómo se ve: detalle "Energía consumida X kWh × Y €/kWh". Si Y supera 0,12, está caro.</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">3</span>Tarifa por horas que no aprovechas</h4>
+        <p>Desde 2021, todos los hogares tienen obligatoriamente la tarifa 2.0TD. Eso significa que tu contador diferencia 3 periodos: punta, llano y valle. Pero hay planes que te cobran todo al mismo precio. Pierdes el sentido de la 2.0TD — y hasta 150 € al año.</p>
+        <p class="detector">Cómo se ve: detalle de energía como un único renglón, sin desglose horario.</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">4</span>Potencia mal ajustada a tu consumo real</h4>
+        <p>O pagas potencia que no usas (sobrecontrato → 40-100 € tirados al año) o se te van los plomos a veces (infracontrato → daño a electrodomésticos y mal rato). La mayoría no sabe en cuál de los dos lados está.</p>
+        <p class="detector">Cómo se ve: en página 2-3, busca "Potencias máximas demandadas en el último año". Compara con tu potencia contratada.</p>
+      </div>
+    </div>
+
+    <p>Si encuentro al menos 2 de los 4 → te lo cuento con cifras concretas. El rango típico de ahorro en los casos que he auditado va de <strong>200 a 500 € al año</strong>.</p>
+
+    <p>Si no encuentro nada → te lo digo y te quedas como estás. Sin presión, sin venderte el cambio "por vender".</p>
 
   </div>
 </section>
@@ -384,51 +458,4 @@ src="https://www.facebook.com/tr?id=1821994165872929&ev=PageView&noscript=1"
     </div>
     <div class="faq-item">
       <h3>¿Voy a tener cortes de luz al cambiar?</h3>
-      <p>No. Cambiar de comercializadora es como cambiar de operador de móvil: mismo cable, misma cobertura, distinta empresa que te factura. Cero cortes. Ni un segundo.</p>
-    </div>
-    <div class="faq-item">
-      <h3>¿Hay permanencia?</h3>
-      <p>Conmigo, ninguna. La que decida la comercializadora la verás antes de firmar — y si tiene, te lo digo abiertamente y decides tú.</p>
-    </div>
-    <div class="faq-item">
-      <h3>¿Esto es un timo?</h3>
-      <p>Tu factura tiene datos públicos (CUPS, comercializadora, potencia). No te pido datos bancarios para auditarla. El cambio lo autorizas TÚ con tu firma. Nada se hace sin que tú lo veas y lo apruebes.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Si es gratis, ¿dónde está la trampa?</h3>
-      <p>No hay trampa. La auditoría es gratis siempre — tú nunca me pagas. Cuando cambias de comercializadora, la nueva me paga una pequeña comisión por traerte. Y si no hay ahorro real para ti, no cambiamos nada y nadie paga nada — ni tú, ni la comercializadora.</p>
-    </div>
-    <div class="faq-item">
-      <h3>¿También gas y placas solares?</h3>
-      <p>Ambos. Si tienes gas, lo audito junto con la luz. Si tienes placas solares, aún más importante: la compensación de excedentes varía mucho entre comercializadoras (de 0,02€/kWh a 0,10€/kWh). Tu factura puede ser MUY mejorable y nadie te lo ha dicho.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="wrap">
-    <h2>Mientras lo piensas, sigues pagando <span class="accent">de más</span>.</h2>
-    <p>Sácale una foto a tu última factura ahora. Te tarda <span class="highlight">30 segundos</span>. Mándamela por WhatsApp y en 24 horas te respondo con un diagnóstico claro: qué pagas, qué deberías pagar, cuánto te sobra. La auditoría es gratis siempre. Si hay ahorro real, lo gestiono. Si no, te quedas como estás.</p>
-    <a href="https://wa.me/34694918102?text=Hola%20Sergio,%20quiero%20que%20mires%20mi%20factura%20de%20la%20luz" class="btn btn-wa" onclick="fbq('track', 'Contact'); fbq('track', 'Lead');">Mándame tu factura por WhatsApp →</a>
-
-    <div class="pd">
-      <p><strong>P.D.</strong> — El cambio de compañía tarda 15 días en hacerse efectivo. En 15 días podrías estar pagando 30-50€ menos al mes. Cada mes que no me la mandas, son 30-50€ menos en tu bolsillo. Es matemática, no publicidad.</p>
-      <p style="margin-top: 12px;">Si crees que tu caso es uno de los del 27% que ya va bien, mejor todavía: te lo confirmo en 5 minutos y nos vamos cada uno por nuestro lado. Pero si eres del 73% que paga de más sin saberlo, esto no se resuelve solo. Tienes que mandármela.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <strong>Sergio Vega</strong> · Asesor energético independiente
-  <br>
-  Plaza España 5, 03170 Rojales (Alicante) <span class="footer-divider">·</span> WhatsApp +34 694 91 81 02 <span class="footer-divider">·</span> sergio@sergiovega.es
-  <br>
-  <a href="/aviso-legal">Aviso legal</a><span class="footer-divider">·</span><a href="/privacidad">Privacidad</a><span class="footer-divider">·</span><a href="/cookies">Cookies</a>
-</footer>
-
-<a href="https://wa.me/34694918102" class="wa-float" aria-label="Contactar por WhatsApp" onclick="fbq('track', 'Contact');">💬</a>
-
-</body>
-</html>
+      <p>No. Cambiar de comercializadora es como cambiar de operador de móvil: mismo cable,
