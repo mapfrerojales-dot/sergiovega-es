@@ -19,12 +19,23 @@
 </script>
 <!-- End MailerLite Universal -->
 
-<!-- Meta Pixel placeholder -->
-<!-- <script>
-  !function(f,b,e,v,n,t,s){...}
-  fbq('init', 'TU_PIXEL_ID');
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1821994165872929');
   fbq('track', 'PageView');
-</script> -->
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1821994165872929&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 <style>
   :root {
@@ -505,8 +516,33 @@
   // After confirming via email, subscribers are added to "Audit guide subscribers" group
   // and enrolled into the 6-email "Audit guide nurture EN" automation.
 
-  // Meta Pixel event placeholder (uncomment after adding Pixel ID above):
-  // window.addEventListener('mlsl_form_success', function() { fbq('track', 'Lead'); });
+  // Meta Pixel Lead event: fires when MailerLite confirms form submit success.
+  // Also fallback: listens to MailerLite's standard "success" custom event on the form.
+  document.addEventListener('DOMContentLoaded', function() {
+    // Strategy 1: MailerLite emits a custom event on the form container after submission
+    document.addEventListener('mlsl_form_success', function() {
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+    });
+    // Strategy 2: MutationObserver to detect the success message rendered by MailerLite
+    var formContainer = document.querySelector('.ml-embedded[data-form="PpC50G"]');
+    if (formContainer) {
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) {
+              var text = (node.textContent || '').toLowerCase();
+              // MailerLite shows a thank-you / confirmation message after submit
+              if (text.indexOf('thank') !== -1 || text.indexOf('confirm') !== -1 || text.indexOf('check your inbox') !== -1) {
+                if (typeof fbq === 'function') fbq('track', 'Lead');
+                observer.disconnect();
+              }
+            }
+          });
+        });
+      });
+      observer.observe(formContainer, { childList: true, subtree: true });
+    }
+  });
 </script>
 
 </body>
