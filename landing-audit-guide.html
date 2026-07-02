@@ -122,6 +122,21 @@
   }
   .hero-bullets strong { color: var(--ink); }
 
+  /* HERO FORM (inline, above the fold) */
+  .hero-form-wrap {
+    margin-top: 8px;
+    max-width: 460px;
+  }
+  .hero-form-wrap .ml-embedded {
+    width: 100%;
+  }
+  .hero-form-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 12px;
+    letter-spacing: 0.2px;
+  }
+
   /* PDF MOCKUP */
   .pdf-mockup {
     background: white;
@@ -419,7 +434,11 @@
         <li>Real numbers from real neighbours: <strong>€113, €274, €50</strong> recovered last year. Anonymised.</li>
         <li>If your bill is fair, the guide <strong>tells you so</strong>. No drama, no sales pitch.</li>
       </ul>
-      <a href="#form" class="btn-submit" style="display:inline-block; width:auto; padding: 14px 32px; text-decoration:none;">Send me the guide →</a>
+      <!-- FORM IN HERO — direct conversion, no scroll needed -->
+      <div class="hero-form-wrap">
+        <div class="ml-embedded" data-form="PpC50G"></div>
+        <p class="hero-form-note">14 pages · Free · Straight to your inbox in 30 seconds</p>
+      </div>
     </div>
     <div>
       <div class="pdf-mockup">
