@@ -511,7 +511,7 @@
   <div class="container author-inner">
     <div class="label">ABOUT ME</div>
     <h2>I'm Sergio.</h2>
-    <p>I run the Mapfre office in Plaza España, 5 — Rojales, Costa Blanca. I've spent years sitting across from British, Dutch and German expats, reading their insurance policies line by line.</p>
+    <p>I've spent years in Rojales, sitting across from British, Dutch and German expats, reading contracts and paperwork line by line — the boring documents most people just sign and forget.</p>
     <p>One day a client asked me to do the same with her electricity bill. I found €113/year hiding in a single line she never agreed to. Then the next client. Then the next. The patterns were so consistent I decided to write them down.</p>
     <p>This guide is the result. It's free because nobody else seems willing to write it plainly. If it helps you, that's enough. If it doesn't, no hard feelings.</p>
     <p class="role">English / Español · Plaza España, 5 · 03170 Rojales · Alicante</p>
@@ -534,32 +534,28 @@
   // After confirming via email, subscribers are added to "Audit guide subscribers" group
   // and enrolled into the 6-email "Audit guide nurture EN" automation.
 
-  // Meta Pixel Lead event: fires when MailerLite confirms form submit success.
-  // Also fallback: listens to MailerLite's standard "success" custom event on the form.
+  // Meta Pixel Lead: fires ONLY when the MailerLite success message
+  // becomes VISIBLE (real submit), never on page load.
+  // MailerLite injects a hidden "Thank you!" at load - do NOT match on text.
+  // Fix aplicado 24/07/2026 tras diagnóstico Fable: pixel registraba 672 Lead vs ~19 altas reales
+  // porque el MutationObserver anterior disparaba con texto "thank" oculto en cada visita.
   document.addEventListener('DOMContentLoaded', function() {
-    // Strategy 1: MailerLite emits a custom event on the form container after submission
-    document.addEventListener('mlsl_form_success', function() {
+    var leadFired = false;
+    function fireLead() {
+      if (leadFired) return;
+      leadFired = true;
       if (typeof fbq === 'function') fbq('track', 'Lead');
-    });
-    // Strategy 2: MutationObserver to detect the success message rendered by MailerLite
-    var formContainer = document.querySelector('.ml-embedded[data-form="PpC50G"]');
-    if (formContainer) {
-      var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) {
-              var text = (node.textContent || '').toLowerCase();
-              // MailerLite shows a thank-you / confirmation message after submit
-              if (text.indexOf('thank') !== -1 || text.indexOf('confirm') !== -1 || text.indexOf('check your inbox') !== -1) {
-                if (typeof fbq === 'function') fbq('track', 'Lead');
-                observer.disconnect();
-              }
-            }
-          });
-        });
-      });
-      observer.observe(formContainer, { childList: true, subtree: true });
     }
+    // Path 1: MailerLite custom success event, if emitted
+    document.addEventListener('mlsl_form_success', fireLead);
+    // Path 2 (fallback): success body visible = real submission
+    var check = setInterval(function() {
+      var succ = document.querySelector('.ml-form-successBody');
+      if (succ && succ.offsetParent !== null) {
+        fireLead();
+        clearInterval(check);
+      }
+    }, 500);
   });
 </script>
 
