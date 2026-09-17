@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Send me your bill and I'll tell you what every line is for | Sergio Vega</title>
-<meta name="description" content="Send me a photo of your Spanish electricity bill on WhatsApp. I'll send you the free guide and, the same day, what every line on your bill is for. In plain English.">
+<title>You've stared at your Spanish electricity bill and couldn't tell what half of it was for | Sergio Vega</title>
+<meta name="description" content="A free 10-minute guide in plain English. The 4 quiet tricks I keep finding on electricity bills across the Costa Blanca. Real numbers, real neighbours.">
 <meta property="og:title" content="The Spanish electricity bill, finally explained in plain English">
 <meta property="og:description" content="By the end you'll read your own bill in 5 minutes. Real cases from neighbours: €113, €274, €50 recovered last year. Free guide.">
 <meta property="og:type" content="article">
@@ -118,9 +118,6 @@
     margin-top: 4px;
     max-width: 460px;
   }
-  .hero-form-wrap .ml-embedded {
-    width: 100%;
-  }
   .hero-form-note {
     font-size: 12px;
     color: var(--ink-mute);
@@ -129,10 +126,23 @@
   }
 
 
-  /* WHATSAPP BLOCK */
+  /* WHATSAPP BLOCK (button values copied from sergiovega.es) */
   .wa-title { font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; letter-spacing: -0.3px; }
   .wa-text { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; }
-  .btn-wa { display: block; text-align: center; text-decoration: none; font-size: 17px; padding: 18px; }
+  .btn-wa {
+    display: block;
+    width: 100%;
+    background: #25D366;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 18px 32px;
+    border-radius: 10px;
+    font-family: inherit;
+  }
+  .btn-wa:hover { background: #1EBE5B; }
   .wa-lines { list-style: none; margin-top: 14px; }
   .wa-lines li { font-size: 14px; color: var(--ink-soft); padding: 3px 0; display: flex; align-items: baseline; gap: 10px; }
   .wa-lines li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; position: relative; top: -2px; }
@@ -434,11 +444,11 @@
         <li><span>Real numbers from real neighbours: <strong>€113, €274, €50</strong> recovered last year. Anonymised.</span></li>
         <li><span>If your bill is fair, the guide <strong>tells you so</strong>. No drama, no sales pitch.</span></li>
       </ul>
-      <!-- WHATSAPP BLOCK (replaces MailerLite form) -->
+      <!-- WHATSAPP BLOCK -->
       <div class="hero-form-wrap">
         <h2 class="wa-title">Yes, send me the guide. And tell me what my own bill says.</h2>
         <p class="wa-text">Send me a photo of your latest bill on WhatsApp. I'll send you the guide and, the same day, what every line on your bill is actually for. In plain English.</p>
-        <a class="btn-submit btn-wa" href="https://wa.me/34694918102?text=Hi%20Sergio%2C%20I%20would%20like%20my%20bill%20checked" target="_blank" rel="noopener">Send me my bill check on WhatsApp</a>
+        <a class="btn-wa" href="https://wa.me/34694918102?text=Hi%20Sergio%2C%20I%20would%20like%20my%20bill%20checked" target="_blank" rel="noopener">Send me my bill check on WhatsApp</a>
         <p class="hero-form-note">It opens WhatsApp with the message already written. You just press send.</p>
         <ul class="wa-lines">
           <li>No form to fill in.</li>
@@ -509,7 +519,7 @@
   <div class="container form-grid">
     <h2>Yes, send me the guide. And tell me what my own bill says.</h2>
     <p>Send me a photo of your latest bill on WhatsApp. I'll send you the guide and, the same day, what every line on your bill is actually for. In plain English.</p>
-    <a class="btn-submit btn-wa" href="https://wa.me/34694918102?text=Hi%20Sergio%2C%20I%20would%20like%20my%20bill%20checked" target="_blank" rel="noopener">Send me my bill check on WhatsApp</a>
+    <a class="btn-wa" href="https://wa.me/34694918102?text=Hi%20Sergio%2C%20I%20would%20like%20my%20bill%20checked" target="_blank" rel="noopener">Send me my bill check on WhatsApp</a>
     <p class="form-note">It opens WhatsApp with the message already written. You just press send.</p>
     <ul class="wa-lines wa-lines-center">
       <li>No form to fill in.</li>
