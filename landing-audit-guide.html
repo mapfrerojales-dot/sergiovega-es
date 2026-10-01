@@ -559,5 +559,72 @@
   });
 </script>
 
+<script>
+  // DIAGNOSTICO TEMPORAL (Fable, 01/10/2026): señales al pixel para ver en qué paso se pierde la gente.
+  // Aislado: si falla, no toca el formulario. Cada señal se envía una sola vez por visita. Quitar cuando se resuelva.
+  (function(){
+    try {
+      var sent = {};
+      function sig(name, extra){
+        try {
+          if (sent[name]) return; sent[name] = true;
+          if (typeof fbq === 'function') fbq('trackCustom', name, extra || {});
+        } catch(e){}
+      }
+      function forms(){ return document.querySelectorAll('.ml-embedded form'); }
+      var t0 = Date.now(), rendered = false;
+      var poll = setInterval(function(){
+        try {
+          var f = forms();
+          if (f.length && !rendered) {
+            rendered = true;
+            sig('DxFormRendered', {ms: Date.now() - t0});
+            hook();
+          }
+          if (Date.now() - t0 > 10000) {
+            clearInterval(poll);
+            if (!rendered) sig('DxFormNotRendered', {ml: (typeof ml === 'function') ? 1 : 0});
+          }
+        } catch(e){}
+      }, 300);
+      function hook(){
+        try {
+          if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function(entries){
+              entries.forEach(function(en){ if (en.isIntersecting) { sig('DxFormSeen'); io.disconnect(); } });
+            }, {threshold: 0.5});
+            document.querySelectorAll('.ml-embedded').forEach(function(el){ io.observe(el); });
+          }
+          document.addEventListener('input', function(ev){
+            var el = ev.target;
+            if (el && el.name === 'fields[email]' && el.value && el.value.length >= 3) sig('DxEmailTyped');
+          }, true);
+          document.addEventListener('click', function(ev){
+            var el = ev.target && ev.target.closest ? ev.target.closest('.ml-embedded button') : null;
+            if (el) {
+              var frm = el.closest('form');
+              var inp = frm ? frm.querySelector('input[name="fields[email]"]') : null;
+              sig('DxSubmitPressed', {hasEmail: (inp && inp.value && inp.value.indexOf('@') > 0) ? 1 : 0});
+              setTimeout(function(){
+                try {
+                  var ok = document.querySelector('.ml-form-successBody');
+                  var err = document.querySelector('.ml-embedded .ml-error, .ml-embedded .ml-form-recaptcha, .ml-embedded [class*="error"]');
+                  if (ok && ok.offsetParent !== null) sig('DxMLSuccess');
+                  else if (err && err.offsetParent !== null) sig('DxMLError', {cls: String(err.className).slice(0,60)});
+                  else sig('DxMLNoResponse');
+                } catch(e){}
+              }, 4000);
+            }
+          }, true);
+          window.addEventListener('error', function(ev){
+            var m = ev && ev.message ? String(ev.message).slice(0,80) : '';
+            if (m) sig('DxJsError', {m: m});
+          });
+        } catch(e){}
+      }
+    } catch(e){}
+  })();
+</script>
+
 </body>
 </html>
