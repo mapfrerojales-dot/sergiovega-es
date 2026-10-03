@@ -1,16 +1,461 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Loading</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=/landing-spain-guide.html">
-<link rel="canonical" href="https://sergiovega.es/landing-spain-guide.html">
-<script>window.location.replace('/landing-spain-guide.html' + window.location.search);</script>
-<style>body{font-family:system-ui,sans-serif;text-align:center;padding:60px 24px;color:#333}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergio Vega · Asesor energético · Audita tu factura de luz</title>
+<meta name="description" content="Audito tu factura de luz sin coste. Si hay ahorro, lo gestiono. Si no, te quedas como estás. Asesor energético independiente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --negro: #111111;
+    --blanco: #FAFAFA;
+    --gris-claro: #F2F1ED;
+    --gris: #6B7280;
+    --naranja: #E94E1B;
+    --verde-wa: #25D366;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--negro);
+    background: var(--blanco);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    font-size: 19px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header { padding: 18px 0; border-bottom: 1px solid #e5e5e0; background: white; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .logo { font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+  .logo-dot { color: var(--naranja); }
+  .lang-switch { font-size: 14px; }
+  .lang-switch a { color: var(--gris); text-decoration: none; padding: 0 6px; }
+  .lang-switch a.active { color: var(--negro); font-weight: 600; }
+
+  /* HERO */
+  .hero {
+    padding: 110px 0 90px;
+    background: var(--blanco);
+  }
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+    margin-bottom: 32px;
+  }
+  .hero h1 .accent { color: var(--naranja); }
+  .hero-sub {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--gris);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 32px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-wa { background: var(--verde-wa); color: white; }
+  .btn-wa:hover { background: #1eb854; }
+  .hero-foot {
+    font-size: 14px;
+    color: var(--gris);
+    margin-top: 18px;
+  }
+  .hero-foot strong { color: var(--negro); }
+
+  /* CARTA DE VENTAS */
+  .body {
+    padding: 80px 0;
+  }
+  .body p {
+    margin-bottom: 24px;
+    line-height: 1.75;
+  }
+  .body p strong { color: var(--negro); }
+  .highlight { color: var(--naranja); font-weight: 700; }
+  .body em.quote {
+    display: block;
+    margin: 32px 0;
+    padding: 24px 32px;
+    border-left: 3px solid var(--naranja);
+    background: var(--gris-claro);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--negro);
+  }
+  .body h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 56px 0 24px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .body h3 .accent { color: var(--naranja); }
+  .body ul {
+    list-style: none;
+    margin: 24px 0 32px;
+    padding: 0;
+  }
+  .body ul li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+  }
+  .body ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--naranja);
+    font-weight: 700;
+  }
+  .body .pull {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 40px 0;
+    color: var(--negro);
+    letter-spacing: -0.01em;
+  }
+  .body .pull .accent { color: var(--naranja); }
+
+  /* CTA INLINE */
+  .cta-inline {
+    margin: 56px 0;
+    padding: 40px 0;
+    border-top: 1px solid #e5e5e0;
+    border-bottom: 1px solid #e5e5e0;
+    text-align: center;
+  }
+  .cta-inline p {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  /* PECADOS — 4 cosas que busco */
+  .pecados {
+    display: grid;
+    gap: 20px;
+    margin: 32px 0 40px;
+  }
+  .pecado {
+    background: var(--gris-claro);
+    border-left: 4px solid var(--naranja);
+    padding: 24px 28px;
+    border-radius: 0 8px 8px 0;
+  }
+  .pecado .num {
+    display: inline-block;
+    background: var(--naranja);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-weight: 800;
+    font-size: 15px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  .pecado h4 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--negro);
+    display: flex;
+    align-items: center;
+  }
+  .pecado p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--negro);
+    margin: 0;
+  }
+  .pecado .detector {
+    margin-top: 12px;
+    font-size: 15px;
+    color: var(--gris);
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .pecado { padding: 20px 22px; }
+    .pecado h4 { font-size: 17px; }
+    .pecado p { font-size: 16px; }
+    .pecado .detector { font-size: 14px; }
+  }
+
+  /* FAQ */
+  .faq {
+    padding: 80px 0;
+    background: var(--gris-claro);
+  }
+  .faq h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .faq-item {
+    border-bottom: 1px solid #d4d3cd;
+    padding: 24px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .faq-item p {
+    color: var(--gris);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    text-align: center;
+    padding: 100px 24px;
+    background: var(--negro);
+    color: white;
+  }
+  .cta-final h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: white;
+    margin: 0 auto 24px;
+    max-width: 720px;
+    line-height: 1.1;
+  }
+  .cta-final h2 .accent { color: var(--naranja); }
+  .cta-final p {
+    color: #d1d5db;
+    font-size: 19px;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .cta-final .pd {
+    margin-top: 48px;
+    color: #a1a1aa;
+    font-size: 15px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    text-align: left;
+    padding: 24px;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+  }
+  .cta-final .pd strong { color: white; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 24px;
+    color: var(--gris);
+    font-size: 14px;
+    text-align: center;
+  }
+  footer a { color: var(--gris); text-decoration: underline; }
+  footer .footer-divider { margin: 0 12px; color: #c4c2b8; }
+
+  /* WHATSAPP FLOATING */
+  .wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--verde-wa);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    text-decoration: none;
+    font-size: 28px;
+    z-index: 200;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .hero { padding: 64px 0 56px; }
+    .body { padding: 56px 0; }
+    .body h3 { font-size: 24px; margin: 40px 0 20px; }
+    .body .pull { font-size: 22px; }
+    .body em.quote { font-size: 19px; padding: 20px 24px; }
+    .faq, .cta-final { padding: 64px 24px; }
+    .btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1821994165872929');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1821994165872929&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
-<p>Loading...</p>
-<p><a href='/landing-spain-guide.html'>Click here if you are not redirected automatically</a></p>
-</body>
-</html>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">sergio vega<span class="logo-dot">.</span></div>
+    <div class="lang-switch">
+      <a href="#" class="active">ES</a>
+      <a href="https://en.sergiovega.es/">EN</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Audito tu factura con bisturí. <span class="accent">Sin coste.</span> Si hay ahorro, lo gestiono. Si no, te quedas como estás.</h1>
+    <p class="hero-sub">Yo no te llamo a las 3 de la tarde. Sácale una foto a tu última factura ahora, <span class="highlight">30 segundos</span>, y mándamela por WhatsApp.</p>
+    <a href="https://wa.me/34694918102?text=Hola%20Sergio,%20quiero%20que%20mires%20mi%20factura%20de%20la%20luz" class="btn btn-wa" onclick="fbq('track', 'Contact'); fbq('track', 'Lead');">Mándame tu factura por WhatsApp →</a>
+    <p class="hero-foot"><strong>Auditoría siempre gratis. Sin compromiso. Sin permanencia.</strong> Asesor energético independiente.</p>
+  </div>
+</section>
+
+<!-- CARTA DE VENTAS -->
+<section class="body">
+  <div class="wrap">
+
+    <p><strong>Mira.</strong></p>
+
+    <p>Hace unos meses estaba en Trustpilot leyendo reseñas de Endesa.</p>
+
+    <p>Encontré una que se me quedó:</p>
+
+    <em class="quote">"He puesto 4 reclamaciones y no responden."</em>
+
+    <p>Era de un cliente que llevaba <strong>2 años pagando</strong> un cargo llamado "Protection 360" en su factura. 4,99€/mes. 119€ tirados. Un cargo que él <strong>nunca había contratado</strong>. Y cuando intentó cancelarlo, no le cogían el teléfono.</p>
+
+    <p>Bajé a otra reseña. Otro cliente. Mismo problema.</p>
+
+    <p>Bajé a otra. Otro. Eran cientos.</p>
+
+    <p>Pensé que era cosa de Endesa. Miré Iberdrola. Naturgy. Holaluz. La misma historia con cargos parecidos.</p>
+
+    <p>Llevo años en Rojales revisando contratos y letra pequeña, línea a línea — los documentos aburridos que casi todo el mundo firma sin leer. He revisado miles y conozco el patrón: te meten un servicio adicional en una llamada que no recuerdas, te lo cobran durante años, y cuando intentas quitarlo nadie atiende.</p>
+
+    <p><strong>Y sé cómo desactivarlo — para que no vuelva.</strong></p>
+
+    <p>Empecé a mirar facturas de luz de gente cercana. Casi todas tenían cargos así. Mantenimientos sin contratar. Seguros que no protegían de nada. Cosas que el cliente aceptó sin enterarse y que le siguen cobrando.</p>
+
+    <p class="pull">Por eso ahora también <span class="accent">audito facturas de luz.</span></p>
+
+    <h3>Funciona así:</h3>
+
+    <p>Me mandas tu factura por WhatsApp. Una foto basta.</p>
+
+    <p>En un día laborable te respondo con un análisis claro: qué pagas, qué deberías pagar, cuánto te sobra. Con cifras concretas y sin jerga técnica.</p>
+
+    <p><strong>Comparo todas las comercializadoras y tarifas relevantes para tu perfil — más de 30 opciones — y te recomiendo la mejor para TI</strong>, no la que más comisión me deje. Si la que tienes es la correcta, te lo digo y nos quedamos como estamos.</p>
+
+    <p>Si conviene cambiar, lo gestiono yo. Tú firmas un papel y en 15 días estás pagando lo justo.</p>
+
+    <h3><span class="accent">¿Y después?</span></h3>
+
+    <p>Después es donde casi todos desaparecen. Una vez te tienen como cliente, ya no se acuerdan de ti hasta el siguiente intento de venta.</p>
+
+    <p class="pull">Yo no.</p>
+
+    <p>Cada mes reviso el mercado por ti. Si aparece una opción mejor, te aviso y la cambiamos. Si no aparece, te dejo en paz. Es 1-2 horas mías al mes — tú no tienes que hacer nada.</p>
+
+    <p>Y si en algún momento tienes un problema con tu factura, <strong>no llamas a una centralita. Me llamas a mí.</strong> Por WhatsApp. Sin 902, sin colas, sin "le paso con otro departamento". Yo ya sé quién eres.</p>
+
+    <p>Ese es el trato.</p>
+
+    <h3>¿Cuánto cuesta? <span class="accent">Cero.</span></h3>
+
+    <p>La auditoría es siempre gratis. <strong>Tú no me pagas nunca.</strong> Si conseguimos un cambio que te conviene, la nueva comercializadora me paga una pequeña comisión por traerte. Si no conviene cambiar, no cobra nadie nada y todo sigue igual.</p>
+
+    <p>La mayoría de asesorías te empujan al cambio sí o sí porque solo cobran si te mueven. Yo prefiero ganarme tu confianza una vez y mantenerla años, antes que cobrarte una comisión rápida y olvidarme de ti.</p>
+
+    <div class="cta-inline">
+      <p>¿Tienes la factura cerca? Sácale foto y mándamela. Tardas <span class="highlight">30 segundos</span>.</p>
+      <a href="https://wa.me/34694918102?text=Hola%20Sergio,%20quiero%20que%20mires%20mi%20factura%20de%20la%20luz" class="btn btn-wa" onclick="fbq('track', 'Contact'); fbq('track', 'Lead');">Mándame tu factura por WhatsApp →</a>
+    </div>
+
+    <h3>Las 4 cosas que <span class="accent">busco</span> en tu factura</h3>
+
+    <p>No te audito "en general". Audito buscando 4 cosas concretas. Si encuentro al menos 2 de las 4, tu factura tiene margen real.</p>
+
+    <div class="pecados">
+      <div class="pecado">
+        <h4><span class="num">1</span>Cargos extras que no contrataste</h4>
+        <p>Líneas tipo "Protección Eléctrica Hogar", "Pack", "Smart Solar" o "Mantenimiento" en la sección "Servicios y otros conceptos". Suelen ser de 5 a 12 € al mes. Si llevas 2 años, son 100-300 € tirados sin saberlo.</p>
+        <p class="detector">Cómo se ve: importe fijo mensual con nombre comercial ("Protección", "Pack", "Hogar", "Smart") en la sección "Servicios y otros conceptos". Lo único normal ahí es el alquiler del contador (~0,80 €/mes).</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">2</span>Precio del kWh muy por encima del mercado</h4>
+        <p>Es la línea que menos se mira y donde más sobrecoste se esconde. Hay planes "estables" cobrando el kWh muy por encima de lo que hoy se firma para el mismo perfil de consumo — y el cliente ni lo sabe, porque nadie compara ese número contra el mercado del día.</p>
+        <p class="detector">Cómo se ve: detalle "Energía consumida X kWh × Y €/kWh". Ese Y es el número que comparo contra el mercado del día para tu perfil.</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">3</span>Tarifa por horas que no aprovechas</h4>
+        <p>Desde 2021, todos los hogares tienen obligatoriamente la tarifa 2.0TD. Eso significa que tu contador diferencia 3 periodos: punta, llano y valle. Pero hay planes que te cobran todo al mismo precio. Pierdes el sentido de la 2.0TD — y hasta 150 € al año.</p>
+        <p class="detector">Cómo se ve: detalle de energía como un único renglón, sin desglose horario.</p>
+      </div>
+      <div class="pecado">
+        <h4><span class="num">4</span>Potencia mal ajustada a tu consumo real</h4>
+        <p>O pagas potencia que no usas (sobrecontrato → 40-100 € tirados al año) o se te van los plomos a veces (infracontrato → daño a electrodomésticos y mal rato). La mayoría no sabe en cuál de los dos lados está.</p>
+        <p class="detector">Cómo se ve: en página 2-3, busca "Potencias máximas demandadas en el último año". Compara con tu potencia contratada.</p>
+      </div>
+    </div>
+
+    <p>Si encuentro al menos 2 de los 4 → te lo cuento con cifras concretas. El rango típico de ahorro en los casos que he auditado va de <strong>200 a 500 € al año</strong>.</p>
+
+    <p>Si no encuentro nada → te lo digo y te quedas como estás. Sin presión, sin venderte el cambio "por vender".</p>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2>Lo que se pregunta todo el mundo.</h2>
+
+    <div class="faq-item">
+      <h3>¿Y si no me ahorro nada?</h3>
+      <p>Te lo digo y no tocamos nada. Sin coste. Sin compromiso. La auditoría es gratis siempre.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Voy a tener cortes de luz al cambiar?</h3>
+      <p>No. Cambiar de comercializadora es como cambiar de operador de móvil: mismo cable,
